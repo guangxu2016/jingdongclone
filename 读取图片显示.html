@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+    <input type="file"">
+    <div class="box">
+        <img src="" alt="">
+    </div>
+    <script>
+    var input = document.querySelector("input");
+    var img = document.querySelector("img");
+
+    input.onchange = function() {
+        var file = this.files[0];
+        var file_name = file.name;
+        file_name = file_name.substring(file_name.lastIndexOf("."));
+
+        if (file_name == ".jpg" || file_name == ".png" || file_name == ".gif") {
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload=function() {
+                img.src = this.result;
+
+            }
+        }else {
+            alert("文件不对");
+        }
+    }
+
+    </script>
+</body>
+</html>
